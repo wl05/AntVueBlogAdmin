@@ -1,6 +1,7 @@
 import Cookies from 'js-cookie'
 
 const app = {
+    namespaced : true,
     state : {
         sidebar : {
             opened : !+Cookies.get('sidebarStatus'),

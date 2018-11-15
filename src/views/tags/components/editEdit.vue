@@ -7,7 +7,7 @@
         @close="$emit('close')"
     >
         <el-form :model="editContent" label-position="right" label-width="80px">
-            <el-form-item label="分类名称" :rules="[{ required: true, message: '请输入分类名称', trigger: 'blur' }]">
+            <el-form-item label="标签名称" :rules="[{ required: true, message: '请输入标签名称', trigger: 'blur' }]">
                 <el-input v-model="editContent.name"></el-input>
             </el-form-item>
         </el-form>
@@ -45,8 +45,7 @@
             return {}
         },
         created () {
-            console.log(this.visible)
-            // this.getList()
+
         },
         methods : {}
     }

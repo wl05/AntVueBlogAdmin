@@ -1,41 +1,23 @@
-import request from '@/utils/request'
+import _request from '@/utils/request'
 
-export function fetchList (query) {
-    return request({
-        url : '/article/list',
-        method : 'get',
-        params : query
-    })
+export function fetchArticle (params) {
+    
+    return _request.get('/articles', params)
 }
 
-export function fetchArticle (id) {
-    return request({
-        url : '/article/detail',
-        method : 'get',
-        params : {id}
-    })
-}
-
-export function fetchPv (pv) {
-    return request({
-        url : '/article/pv',
-        method : 'get',
-        params : {pv}
-    })
+export function getArticleDetail (id) {
+    return _request.get(`/articles/${id}`)
 }
 
 export function createArticle (data) {
-    return request({
-        url : '/article/create',
-        method : 'post',
-        data
-    })
+    return _request.post('/articles', data)
 }
 
-export function updateArticle (data) {
-    return request({
-        url : '/article/update',
-        method : 'post',
-        data
-    })
+export function updateArticle (id, data) {
+    return _request.put(`/articles/${id}`, data)
 }
+
+export function deleteArticle (id) {
+    return _request.delete(`/articles/${id}`)
+}
+
