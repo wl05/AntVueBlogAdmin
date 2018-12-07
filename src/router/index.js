@@ -49,19 +49,18 @@ export const constantRouterMap = [
         component : Layout,
         redirect : '/article/create',
         name : 'Article',
-        meta : {title : 'article', icon : 'example'},
+        meta : {title : 'Article', icon : 'nested'},
         children : [ {
             path : 'create',
             name : 'Create',
             component : () => import ('@/views/article/create'),
-            meta : {title : 'Create', icon : 'tree'}
+            meta : {title : 'Create', icon : 'edit'}
         },
             {
                 path : 'list',
                 name : 'List',
                 component : () => import ('@/views/article/list'),
-                meta : {title : 'List', icon : 'tree'},
-                
+                meta : {title : 'List', icon : 'list'},
             }
         
         ]
@@ -74,7 +73,7 @@ export const constantRouterMap = [
             path : 'create',
             name : 'Tags',
             component : () => import ('@/views/tags/tags'),
-            meta : {title : 'Tags', icon : 'tree'}
+            meta : {title : 'Tags', icon : 'table'}
         } ]
         
     },
@@ -86,7 +85,7 @@ export const constantRouterMap = [
             path : 'create',
             name : 'Create',
             component : () => import ('@/views/categories/categories'),
-            meta : {title : 'Categories', icon : 'tree'}
+            meta : {title : 'Categories', icon : 'star'}
         } ]
         
     }

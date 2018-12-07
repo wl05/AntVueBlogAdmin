@@ -1,88 +1,90 @@
-# vue-admin-template
+# AntVueBlogAdmin
 
-> A minimal vue admin template with Element UI & axios & iconfont & permission control & lint
+> Vue.js+Egg.js+Mongodb的前后端分离的个人博客后台管理。
 
-**Live demo:** http://panjiachen.github.io/vue-admin-template
+> 博客地址：[ANT](http://120.77.219.106/#/)
 
-[中文文档](https://github.com/PanJiaChen/vue-admin-template/blob/master/README-zh.md)
+## 主要技术栈
+后台管理：vue.js、vue-router、vuex
 
-## Build Setup
+后端：Egg.js、Mongodb。[AntEggBlogService](https://github.com/antbaobao/AntEggBlogService)
+前端：[AntVueBlogAdmin](https://github.com/antbaobao/AntVueBlogAdmin)
 
+### 后台管理
+- 发布文章、存为草稿
+- 文章管理
+- 标签管理
+- 分类管理
+- 登录验证
+
+
+## Setup
+
+运行环境
+- node.js
+- mongoDB
+
+克隆远程库
 ```bash
-# Clone project
-git clone https://github.com/PanJiaChen/vue-admin-template.git
-
-# Install dependencies
-npm install
-
-# Serve with hot reload at localhost:9528
+git clone git@github.com:antbaobao/AntVueBlogAdmin.git
+```
+安装依赖
+```bash
+cd AntVueBlogAdmin
+npm i
+```
+运行
+```bash
 npm run dev
-
-# Build for production with minification
-npm run build
-
-# Build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-## Demo
+### 效果展示
 
-![demo](https://github.com/PanJiaChen/PanJiaChen.github.io/blob/master/images/demo.gif)
 
-## Extra
-
-If you want router permission && generate menu by user roles , you can use this branch [permission-control](https://github.com/PanJiaChen/vue-admin-template/tree/permission-control)
-
-This project is based on `webpack4` development. If you want to use `webpack3` development, please use this branch [webpack3](https://github.com/PanJiaChen/vue-admin-template/tree/webpack3)
-
-For `typescript` version, you can use [vue-typescript-admin-template](https://github.com/Armour/vue-typescript-admin-template) (Credits: [@Armour](https://github.com/Armour))
-
-## Related Project
-
-[vue-element-admin](https://github.com/PanJiaChen/vue-element-admin)
-
-[electron-vue-admin](https://github.com/PanJiaChen/electron-vue-admin)
-
-[vue-typescript-admin-template](https://github.com/Armour/vue-typescript-admin-template)
-
-### Element-Ui using cdn tutorial
-
-First find `index.html`([root directory](https://github.com/PanJiaChen/vue-admin-template/blob/element-ui-cdn/index.html))
-
-Import css and js of `Element`, and then import vue. Because `Element` is vue-dependent, vue must be import before it.
-
-Then find [webpack.base.conf.js](https://github.com/PanJiaChen/vue-admin-template/blob/element-ui-cdn/build/webpack.base.conf.js)
-Add `externals` to make webpack not package vue and element.
-
+![](https://user-gold-cdn.xitu.io/2018/12/7/167891b7ef8a4c72?w=2876&h=1632&f=png&s=469099)
+### 目录
 ```
-externals: {
-  vue: 'Vue',
-  'element-ui':'ELEMENT'
-}
+│  .babelrc             babel配置
+│  .editorconfig        编辑器配置
+│  .eslintignore        eslint忽略
+│  .eslintrc.js         eslintrc配置
+│  .gitignore           git上传忽略
+│  .postcssrc.js
+│  Dockerfile           docker 配置
+│  index.html           打包模板
+│  package.json
+│  README.md
+│
+├─build
+├─src
+│   │  main.js        项目入口
+│   │  App.vue          根组件
+│   │  index.css      全局样式
+│   │
+│   ├─api             api 请求接口
+│   │
+│   ├─assets          外部引用文件
+│   │
+│   ├─components      vue组件
+│   │
+│   ├─icons           图标
+│   │
+│   ├─router          路由
+│   │
+│   ├─styles          全局样式
+│   │
+│   ├─ layout         页面公共结构
+│   │
+│   ├─store           vuex文件
+│   │
+│   ├─utils           工具函数
+│   │
+│   └─views           页面vue文件
+│
+├─test
+└─static            静态文件
 ```
 
-Finally there is a small detail to pay attention to that if you import vue in global, you don't need to manually `Vue.use(Vuex)`, it will be automatically mounted, see
-[issue](https://github.com/vuejs/vuex/issues/731)
 
-And you can use `npm run build --report` to see the effect
-
-Pictured:
-![demo](https://panjiachen.github.io/images/element-cdn.png)
-
-**[Detailed code](https://github.com/PanJiaChen/vue-admin-template/commit/746aff560932704ae821f82f10b8b2a9681d5177)**
-
-**[Branch](https://github.com/PanJiaChen/vue-admin-template/tree/element-ui-cdn)**
-
-## Browsers support
-
-Modern browsers and Internet Explorer 10+.
-
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari/safari_48x48.png" alt="Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)</br>Safari |
-| --------- | --------- | --------- | --------- |
-| IE10, IE11, Edge| last 2 versions| last 2 versions| last 2 versions
-
-## License
-
-[MIT](https://github.com/PanJiaChen/vue-admin-template/blob/master/LICENSE) license.
-
-Copyright (c) 2017-present PanJiaChen
+### TODO
+- 优化图片上传功能

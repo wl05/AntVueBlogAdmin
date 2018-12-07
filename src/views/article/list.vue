@@ -6,25 +6,15 @@
                 发布文章
             </el-button>
         </div>
-        <!--<div class="pagination">-->
-            <!--<el-pagination-->
-                <!--background-->
-                <!--@size-change="handleSizeChange"-->
-                <!--@current-change="handleCurrentChange"-->
-                <!--:current-page="pageSize"-->
-                <!--:page-sizes="[10, 20, 30, 40]"-->
-                <!--:page-size="pageLimit"-->
-                <!--layout="total, sizes, prev, pager, next, jumper"-->
-                <!--:total="count">-->
-            <!--</el-pagination>-->
-        <!--</div>-->
         <el-table
             v-loading="fetchArticleLoading"
             :data="articleList"
             element-loading-text="Loading"
             border
             fit
-            highlight-current-row>
+            highlight-current-row
+            :height="619"
+        >
             <el-table-column align="center" label="ID" width="65">
                 <template slot-scope="scope">
                     {{ scope.$index + (pageSize-1)*pageLimit+1 }}
@@ -81,7 +71,8 @@
                 :page-sizes="[10, 20, 30, 40]"
                 :page-size="pageLimit"
                 layout="total, sizes, prev, pager, next, jumper"
-                :total="count">
+                :total="count"
+            >
             </el-pagination>
         </div>
     </div>
