@@ -40,8 +40,7 @@ npm run dev
 
 ### 效果展示
 
-
-![](https://user-gold-cdn.xitu.io/2018/12/7/167891b7ef8a4c72?w=2876&h=1632&f=png&s=469099)
+![](https://user-gold-cdn.xitu.io/2018/12/8/1678d0285a4304cf?w=2878&h=1628&f=png&s=470479)
 ### 目录
 ```
 │  .babelrc             babel配置

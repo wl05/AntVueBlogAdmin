@@ -88,6 +88,18 @@ export const constantRouterMap = [
             meta : {title : 'Categories', icon : 'star'}
         } ]
         
+    },
+    {
+        path : "/user",
+        component : Layout,
+        name : 'User',
+        children : [ {
+            path : 'create',
+            name : 'Create',
+            component : () => import ('@/views/user/list'),
+            meta : {title : 'User', icon : 'user'}
+        } ]
+        
     }
 
 ]
