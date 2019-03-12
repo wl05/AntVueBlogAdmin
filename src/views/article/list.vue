@@ -25,19 +25,9 @@
                     {{ scope.row.title }}
                 </template>
             </el-table-column>
-            <el-table-column label="发布人" width="75">
-                <template slot-scope="scope">
-                    {{ scope.row.creator.name }}
-                </template>
-            </el-table-column>
             <el-table-column label="发布时间" width="160">
                 <template slot-scope="scope">
                     {{ formatTimestamp(Number(scope.row.publishAt) /1000) }}
-                </template>
-            </el-table-column>
-            <el-table-column label="标签" width="130">
-                <template slot-scope="scope">
-                    {{ scope.row.tag.name }}
                 </template>
             </el-table-column>
             <el-table-column label="状态" width="90">
@@ -79,85 +69,84 @@
 </template>
 
 <script>
-    import { fetchArticle, deleteArticle } from '@/api/article'
-    import formatTimestamp from '@/utils/formatTimestamp'
-    import { mapState, mapMutations, mapActions } from 'vuex'
+  import { fetchArticle, deleteArticle } from '@/api/article'
+  import formatTimestamp from '@/utils/formatTimestamp'
+  import { mapState, mapMutations, mapActions } from 'vuex'
 
-    export default {
-        data () {
-            return {
-                fetchArticleLoading : false,
-                pageSize : 1,
-                pageLimit : 10,
-                deleteArticleLoading : false,
-                deletingId : ''
-            }
-        },
-        computed : {
-            ...mapState('article', [
-                'articleList',
-                'count'
-            ]),
+  export default {
+    data () {
+      return {
+        fetchArticleLoading : false,
+        pageSize : 1,
+        pageLimit : 10,
+        deleteArticleLoading : false,
+        deletingId : ''
+      }
+    },
+    computed : {
+      ...mapState('article', [
+        'articleList',
+        'count'
+      ]),
+    },
+    created () {
+      this.fetchArticle(this.pageSize, this.pageLimit)
+    },
+    methods : {
+      ...mapActions('article', [ 'FetchArticle' ]),
+      formatTimestamp (timestamp) {
+        return formatTimestamp(timestamp)
+      },
+      handleSizeChange (val) {
+        this.pageLimit = val
+        this.fetchArticle(this.pageSize, val)
+        console.log(`每页 ${val} 条`);
+      },
+      handleCurrentChange (val) {
+        this.pageSize = val
+        this.fetchArticle(val, this.pageLimit)
 
-        },
-        created () {
-            this.fetchArticle(this.pageSize, this.pageLimit)
-        },
-        methods : {
-            ...mapActions('article', [ 'FetchArticle' ]),
-            formatTimestamp (timestamp) {
-                return formatTimestamp(timestamp)
-            },
-            handleSizeChange (val) {
-                this.pageLimit = val
-                this.fetchArticle(this.pageSize, val)
-                console.log(`每页 ${val} 条`);
-            },
-            handleCurrentChange (val) {
-                this.pageSize = val
-                this.fetchArticle(val, this.pageLimit)
-
-                console.log(`当前页: ${val}`);
-            },
-            async fetchArticle (pageSize, pageLimit) {
-                this.fetchArticleLoading = true
-                try {
-                    await this.FetchArticle({pageSize, pageLimit})
-                    this.fetchArticleLoading = false
-                } catch (e) {
-                    this.fetchArticleLoading = false
-                    this.$message.error('获取列表失败')
-                }
-            },
-            deleteArticle (id) {
-                this.$confirm('确定删除吗', {
-                    confirmButtonText : '确定',
-                    cancelButtonText : '取消',
-                    type : 'warning',
-                    callback : async (action, instance) => {
-                        if (action === "confirm") {
-                            this.deletingId = id
-                            this.deleteArticleLoading = true
-                            try {
-                                const result = await deleteArticle(id)
-                                this.deleteArticleLoading = false
-                                if (result.data.code) {
-                                    this.$message.error('删除失败')
-                                } else {
-                                    this.$message.success('删除成功')
-                                    this.fetchArticle(this.pageSize, this.pageLimit)
-                                }
-                            } catch (e) {
-                                console.log(e)
-                                this.deleteArticleLoading = false
-                                this.$message.error('出错了')
-                            }
-                        }
-                    }
-                })
-            },
+        console.log(`当前页: ${val}`);
+      },
+      async fetchArticle (pageSize, pageLimit) {
+        this.fetchArticleLoading = true
+        try {
+          await this.FetchArticle({pageSize, pageLimit})
+          this.fetchArticleLoading = false
+        } catch (e) {
+          this.fetchArticleLoading = false
+          this.$message.error('获取列表失败')
         }
+      },
+      deleteArticle (id) {
+        this.$confirm('确定删除吗', {
+          confirmButtonText : '确定',
+          cancelButtonText : '取消',
+          type : 'warning',
+          callback : async (action, instance) => {
+            if (action === "confirm") {
+              this.deletingId = id
+              this.deleteArticleLoading = true
+              try {
+                const result = await deleteArticle(id)
+                this.deleteArticleLoading = false
+                if (result.data.code) {
+                  this.$message.error('删除失败')
+                } else {
+                  this.$message.success('删除成功')
+                  this.fetchArticle(this.pageSize, this.pageLimit)
+                }
+              } catch (e) {
+                console.log(e)
+                this.deleteArticleLoading = false
+                this.$message.error('出错了')
+              }
+            }
+          }
+        })
+      },
     }
+  }
 </script>
 
 <style scoped type="scss">
