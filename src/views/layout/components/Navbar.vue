@@ -1,5 +1,6 @@
 <template>
     <el-menu class="navbar" mode="horizontal">
+<<<<<<< HEAD
         <hamburger
             :toggle-click="toggleSideBar"
             :is-active="sidebar.opened"
@@ -9,6 +10,13 @@
         <el-dropdown class="avatar-container" trigger="click">
             <div class="avatar-wrapper">
                 <img :src="avatar + '?imageView2/1/w/80/h/80'" class="user-avatar"/>
+=======
+        <hamburger :toggle-click="toggleSideBar" :is-active="sidebar.opened" class="hamburger-container"/>
+        <breadcrumb/>
+        <el-dropdown class="avatar-container" trigger="click">
+            <div class="avatar-wrapper">
+                <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+>>>>>>> 9e926002056326cce2bd476a6c8b23e9592204b7
                 <i class="el-icon-caret-bottom"/>
             </div>
             <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -26,6 +34,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import { mapState, mapMutations } from 'vuex';
 import Breadcrumb from '@/components/Breadcrumb';
 import Hamburger from '@/components/Hamburger';
@@ -51,6 +60,36 @@ export default {
     ...mapMutations('user', ['LOGOUT']),
   }
 };
+=======
+    import { mapState, mapMutations } from 'vuex'
+    import Breadcrumb from '@/components/Breadcrumb'
+    import Hamburger from '@/components/Hamburger'
+    import defaultAvatar from '@/assets/defaultAvatar.png'
+
+    export default {
+        components : {
+            Breadcrumb,
+            Hamburger
+        },
+        computed : {
+            ...mapState('user', {
+                avatar : state => state.avatar ? state.avatar : defaultAvatar,
+            }),
+            ...mapState('app', {
+                sidebar : state => state.sidebar,
+            })
+
+        },
+        methods : {
+            toggleSideBar () {
+                this.$store.dispatch('app/ToggleSideBar')
+            },
+            ...mapMutations('user', [
+                'LOGOUT'
+            ]),
+        }
+    }
+>>>>>>> 9e926002056326cce2bd476a6c8b23e9592204b7
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
@@ -94,3 +133,7 @@ export default {
         }
     }
 </style>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9e926002056326cce2bd476a6c8b23e9592204b7

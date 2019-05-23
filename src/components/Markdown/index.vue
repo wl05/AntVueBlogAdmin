@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div class="class-container">
     <article class="markdown-body" id="write" ref="content">
       <!--<vue-markdown>{{content}}</vue-markdown>-->
@@ -47,3 +48,58 @@ export default {
   padding: 15px;
 }
 </style>
+=======
+    <div class="class-container">
+        <article class="markdown-body" id="write" ref="content">
+            <!--<vue-markdown>{{content}}</vue-markdown>-->
+        </article>
+    </div>
+
+
+</template>
+
+<script>
+    // import { markdown } from 'markdown'
+    import VueMarkdown from 'vue-markdown'
+
+    import './style.css'
+    import 'github-markdown-css'
+    import './coverGithubCss.css'
+
+    export default {
+        props : {
+            content : {
+                type : Object,
+                default : () => {
+                }
+            },
+        },
+        components : {
+            VueMarkdown
+        },
+
+        created () {
+            console.log(this.content.htmlValue)
+            this.$nextTick(function () {
+                this.$refs.content.innerHTML = this.content.htmlValue
+            })
+        }
+        // computed : {
+        //     fomatedContent () {
+        //         this.$nextTick(function () {
+        //             this.$refs.content.innerHTML = this.content.htmlValue
+        //         })
+        //         return markdown.toHTML(this.content)
+        //     }
+        // }
+    }
+</script>
+
+
+<style scoped>
+    .class-container {
+        padding: 15px;
+    }
+</style>
+
+>>>>>>> 9e926002056326cce2bd476a6c8b23e9592204b7

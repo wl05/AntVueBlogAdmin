@@ -9,10 +9,21 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 export default {
   name: 'AppMain',
   computed: {},
 };
+=======
+    export default {
+        name : 'AppMain',
+        computed : {
+            // key() {
+            //   return this.$route.name !== undefined ? this.$route.name + +new Date() : this.$route + +new Date()
+            // }
+        }
+    }
+>>>>>>> 9e926002056326cce2bd476a6c8b23e9592204b7
 </script>
 
 <style scoped>
