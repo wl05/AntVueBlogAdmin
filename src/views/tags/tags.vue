@@ -59,36 +59,36 @@
 </template>
 
 <script>
-    import { create, getList, updateTag, deleteTag } from '@/api/tags'
+    import {create, getList, updateTag, deleteTag} from '@/api/tags'
     import editEdit from './components/editEdit'
 
     export default {
-        data () {
+        data() {
             return {
-                list : null,
-                listLoading : false,
-                createDialogVisible : false,
+                list: null,
+                listLoading: false,
+                createDialogVisible: false,
 
-                tagForm : {
-                    name : ''
+                tagForm: {
+                    name: ''
                 },
-                createLoading : false,
-                editLoading : false,
-                editTagVisible : false,
-                editContent : null,
-                deleteLoading : false
+                createLoading: false,
+                editLoading: false,
+                editTagVisible: false,
+                editContent: null,
+                deleteLoading: false
 
             }
         },
-        created () {
+        mounted() {
             this.getList()
         },
-        components : {
+        components: {
             editEdit
         },
-        methods : {
+        methods: {
 
-            async getList () {
+            async getList() {
                 this.listLoading = true
                 try {
                     const result = await getList()
@@ -104,7 +104,7 @@
                 }
 
             },
-            async create () {
+            async create() {
                 this.createDialogVisible = false
                 this.createLoading = true
                 try {
@@ -120,11 +120,11 @@
                     this.$message.error('出错了')
                 }
             },
-            edit (id) {
+            edit(id) {
                 this.editTagVisible = true
                 this.editContent = this.list.find((item) => item._id === id)
             },
-            async confirmEdit (editedContent) {
+            async confirmEdit(editedContent) {
                 this.editTagVisible = false
                 this.editLoading = true
                 try {
@@ -142,12 +142,12 @@
                     this.$message.error('出错了')
                 }
             },
-            deleteTag (id) {
+            deleteTag(id) {
                 this.$confirm('删除标签将删除标签相关的所有文章', {
-                    confirmButtonText : '确定',
-                    cancelButtonText : '取消',
-                    type : 'warning',
-                    callback : (action, instance) => {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning',
+                    callback: (action, instance) => {
                         if (action === "confirm") {
                             this.confirmDeleteTag(id)
                         }
@@ -155,7 +155,7 @@
                     }
                 })
             },
-            async confirmDeleteTag (id) {
+            async confirmDeleteTag(id) {
                 this.deleteLoading = true
                 try {
                     const result = await deleteTag(id)

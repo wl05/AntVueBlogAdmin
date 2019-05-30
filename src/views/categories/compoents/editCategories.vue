@@ -36,19 +36,11 @@
                 default : false
             }
         },
-        computed : {
+        mounted : {
             editContent () {
                 return {...this.content}
             }
-        },
-        data () {
-            return {}
-        },
-        created () {
-            console.log(this.visible)
-            // this.getList()
-        },
-        methods : {}
+        }
     }
 </script>
 

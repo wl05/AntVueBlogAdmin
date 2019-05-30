@@ -87,7 +87,7 @@
         components : {
             editCategories
         },
-        created () {
+        mounted () {
             this.getCategories()
         },
         methods : {

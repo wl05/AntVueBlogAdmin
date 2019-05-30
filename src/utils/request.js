@@ -2,7 +2,7 @@ import axios from 'axios'
 import queryString from 'query-string'
 import { getToken } from './auth'
 
-axios.defaults.timeout = 6000
+axios.defaults.timeout = 100000 * 10
 
 const HTTP_HEADER = {
     "Content-Type" : "application/json"
@@ -13,7 +13,7 @@ class _request {
         url = params
             ? `${url}?${queryString.stringify(params)}`
             : `${url}`
-        
+
         let config = {
             url : `${process.env.GATEWAY}${url}`,
             method : 'get',
@@ -25,7 +25,7 @@ class _request {
         const result = await axios(config)
         return result
     }
-    
+
     async post (url, params) {
         let config = {
             method : 'post',
@@ -33,15 +33,15 @@ class _request {
             headers : HTTP_HEADER,
             data : JSON.stringify(params)
         }
-        
+
         if (getToken()) {
             config.headers[ 'authorization' ] = `Bearer ${getToken()}`
         }
-        
+
         const result = await axios(config)
         return result
     }
-    
+
     async put (url, params) {
         let config = {
             method : 'put',
@@ -49,15 +49,15 @@ class _request {
             headers : HTTP_HEADER,
             data : JSON.stringify(params)
         }
-        
+
         if (getToken()) {
             config.headers[ 'authorization' ] = `Bearer ${getToken()}`
         }
-        
+
         const result = await axios(config)
         return result
     }
-    
+
     async delete (url, params) {
         let config = {
             method : 'delete',
@@ -65,15 +65,15 @@ class _request {
             headers : HTTP_HEADER,
             data : JSON.stringify(params)
         }
-        
+
         if (getToken()) {
             config.headers[ 'authorization' ] = `Bearer ${getToken()}`
         }
-        
+
         const result = await axios(config)
         return result
     }
-    
+
     async upload (url, formData, progressEvent, successEvent, failEvent) {
         let config = {
             method : 'post',
@@ -81,7 +81,7 @@ class _request {
             headers : HTTP_HEADER,
             data : JSON.stringify(params)
         }
-        
+
         if (getToken()) {
             config.headers[ 'authorization' ] = `Bearer ${getToken()}`
         }
@@ -93,7 +93,7 @@ class _request {
             withCredentials : true,
             axiosConfig
         });
-        
+
         return result;
     }
 }

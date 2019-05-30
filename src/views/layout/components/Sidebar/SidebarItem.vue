@@ -45,7 +45,6 @@
         name : 'SidebarItem',
         components : {Item, AppLink},
         props : {
-            // route object
             item : {
                 type : Object,
                 required : true

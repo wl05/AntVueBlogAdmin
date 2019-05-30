@@ -53,10 +53,10 @@
 </template>
 
 <script>
-    import { update, getUserList } from '@/api/user'
+    import {update, getUserList} from '@/api/user'
 
     export default {
-        data () {
+        data() {
             const validatePass = (rule, value, callback) => {
                 if (value === '' && this.editContent.password) {
                     callback(new Error('请再次输入密码'));
@@ -67,34 +67,32 @@
                 }
             }
             return {
-                /*get list*/
-                list : null,
-                listLoading : false,
-                createLoading : false,
-                /*edit*/
-                editLoading : false,
-                editUserVisible : false,
-                editContent : {
-                    password : '',
-                    checkPassword : '',
-                    name : ''
+                list: null,
+                listLoading: false,
+                createLoading: false,
+                editLoading: false,
+                editUserVisible: false,
+                editContent: {
+                    password: '',
+                    checkPassword: '',
+                    name: ''
                 },
-                editId : '',
-                rules : {
-                    checkPassword : [
-                        {validator : validatePass, trigger : 'blur'}
+                editId: '',
+                rules: {
+                    checkPassword: [
+                        {validator: validatePass, trigger: 'blur'}
                     ],
-                    name : [
-                        {required : true, message : '请输入用户名', trigger : 'blur'}
+                    name: [
+                        {required: true, message: '请输入用户名', trigger: 'blur'}
                     ]
                 }
             }
         },
-        created () {
+        mounted() {
             this.getUserList()
         },
-        methods : {
-            async getUserList () {
+        methods: {
+            async getUserList() {
                 this.listLoading = true
                 try {
                     const result = await getUserList()
@@ -108,12 +106,12 @@
                 }
                 this.listLoading = false
             },
-            edit (id) {
+            edit(id) {
                 this.editUserVisible = true
                 this.editContent.name = this.list.find((item) => item._id === id).name
                 this.editId = id
             },
-            confirmEdit () {
+            confirmEdit() {
                 this.$refs.ruleForm.validate(async (valid) => {
                     if (valid) {
                         this.editUserVisible = false

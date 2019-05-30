@@ -13,7 +13,6 @@
 </template>
 
 <script>
-    import { mapState, mapMutations, mapActions, mapGetters } from 'vuex'
     import { getArticleDetail } from '@/api/article'
     import formatTimestamp from '@/utils/formatTimestamp'
     import Markdown from '@/components/Markdown'

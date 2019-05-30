@@ -21,33 +21,26 @@
 <script>
 
     export default {
-        props : {
-            content : {
-                type : Object,
-                default : () => {
+        props: {
+            content: {
+                type: Object,
+                default: () => {
                 }
             },
-            visible : {
-                type : Boolean,
-                default : false
+            visible: {
+                type: Boolean,
+                default: false
             },
-            loading : {
-                type : Boolean,
-                default : false
+            loading: {
+                type: Boolean,
+                default: false
             }
         },
-        computed : {
-            editContent () {
+        computed: {
+            editContent() {
                 return {...this.content}
             }
-        },
-        data () {
-            return {}
-        },
-        created () {
-
-        },
-        methods : {}
+        }
     }
 </script>
 

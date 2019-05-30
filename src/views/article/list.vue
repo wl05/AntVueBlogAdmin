@@ -89,7 +89,7 @@
         'count'
       ]),
     },
-    created () {
+    mounted () {
       this.fetchArticle(this.pageSize, this.pageLimit)
     },
     methods : {
