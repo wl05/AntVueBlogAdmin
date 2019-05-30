@@ -22,6 +22,98 @@ import Layout from '../views/layout/Layout'
   }
  **/
 export const constantRouterMap = [
+<<<<<<< HEAD
+  {
+    path: '/detail/:id',
+    name: 'Detail',
+    component: () => import('@/views/article/detail'),
+    meta: { title: 'Detail', icon: 'tree' },
+  },
+  {
+    path: '/login',
+    component: () => import('@/views/login/index'),
+    hidden: true,
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/dashboard',
+    name: 'Dashboard',
+    hidden: true,
+    children: [
+      {
+        path: 'dashboard',
+        component: () => import('@/views/dashboard/index'),
+      },
+    ],
+  },
+  {
+    path: '/article',
+    component: Layout,
+    redirect: '/article/create',
+    name: 'Article',
+    meta: { title: 'Article', icon: 'nested' },
+    children: [
+      {
+        path: 'create',
+        name: 'Create',
+        component: () => import('@/views/article/create'),
+        meta: { title: 'Create', icon: 'edit' },
+      },
+      {
+        path: 'list',
+        name: 'List',
+        component: () => import('@/views/article/list'),
+        meta: { title: 'List', icon: 'list' },
+      },
+    ],
+  },
+  {
+    path: '/tags',
+    component: Layout,
+    name: 'Tags',
+    children: [
+      {
+        path: 'create',
+        name: 'Tags',
+        component: () => import('@/views/tags/tags'),
+        meta: { title: 'Tags', icon: 'table' },
+      },
+    ],
+  },
+  {
+    path: '/categories',
+    component: Layout,
+    name: 'Categories',
+    children: [
+      {
+        path: 'create',
+        name: 'Create',
+        component: () => import('@/views/categories/categories'),
+        meta: { title: 'Categories', icon: 'star' },
+      },
+    ],
+  },
+  {
+    path: '/user',
+    component: Layout,
+    name: 'User',
+    children: [
+      {
+        path: 'create',
+        name: 'Create',
+        component: () => import('@/views/user/list'),
+        meta: { title: 'User', icon: 'user' },
+      },
+    ],
+  },
+]
+
+export default new Router({
+  // mode: 'history', //后端支持可开
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRouterMap,
+=======
     {
         path : '/detail/:id',
         name : 'Detail',
@@ -108,4 +200,5 @@ export default new Router({
     // mode: 'history', //后端支持可开
     scrollBehavior : () => ({y : 0}),
     routes : constantRouterMap
+>>>>>>> 9e926002056326cce2bd476a6c8b23e9592204b7
 })

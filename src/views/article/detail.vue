@@ -2,13 +2,71 @@
     <div class="container-wrap">
         <div v-if="Object.keys(detail).length" class="container">
             <header class="header">
+<<<<<<< HEAD
+                <h4 class="title">{{ detail.title }}</h4>
+                <span class="date">时间：{{ formatTimestamp(Number(detail.publishAt) / 1000) }}</span>
+                <span class="tag">标签：{{ detail.tag.name }}</span>
+=======
                 <h4 class="title">{{detail.title}}</h4>
                 <span class="date">时间：{{formatTimestamp(Number(detail.publishAt) /1000)}}</span>
                 <span class="tag">标签：{{detail.tag.name}}</span>
+>>>>>>> 9e926002056326cce2bd476a6c8b23e9592204b7
             </header>
             <Markdown :content="content"/>
         </div>
     </div>
+<<<<<<< HEAD
+</template>
+
+<script>
+import { getArticleDetail } from '@/api/article';
+import formatTimestamp from '@/utils/formatTimestamp';
+import Markdown from '@/components/Markdown';
+
+export default {
+  components: {
+    Markdown,
+  },
+  data() {
+    return {
+      id: '',
+      getArticleDetailLoading: false,
+      detail: {},
+    };
+  },
+  computed: {
+    content: function () {
+      return {
+        htmlValue: this.detail.htmlValue,
+        markdownValue: this.detail.markdownValue,
+      };
+    },
+  },
+  mounted() {
+    this.getArticleDetail(this.$route.params.id);
+  },
+  methods: {
+    formatTimestamp(timestamp) {
+      return formatTimestamp(timestamp);
+    },
+    async getArticleDetail(id) {
+      this.getArticleDetailLoading = true;
+      try {
+        const result = await getArticleDetail(id);
+        if (result.data.code) {
+          this.$message.error('获取失败');
+        } else {
+          this.detail = result.data.data;
+        }
+        this.getArticleDetailLoading = false;
+      } catch (e) {
+        this.getArticleDetailLoading = false;
+        this.$message.error('获取失败');
+      }
+    },
+  },
+};
+=======
 
 </template>
 
@@ -61,6 +119,7 @@
             }
         }
     }
+>>>>>>> 9e926002056326cce2bd476a6c8b23e9592204b7
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
     /*@import '@/styles/markdown.css';*/

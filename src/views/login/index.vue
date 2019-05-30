@@ -1,14 +1,35 @@
 <template>
     <div class="login-container">
+<<<<<<< HEAD
+        <el-form
+            ref="loginForm"
+            :model="loginForm"
+            :rules="loginRules"
+            class="login-form"
+            auto-complete="on"
+            label-position="left"
+        >
+=======
         <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on"
                  label-position="left">
+>>>>>>> 9e926002056326cce2bd476a6c8b23e9592204b7
             <h3 class="title">Ant Vue Blog Admin</h3>
             <el-form-item prop="username">
         <span class="svg-container">
           <svg-icon icon-class="user"/>
         </span>
+<<<<<<< HEAD
+                <el-input
+                    v-model="loginForm.username"
+                    name="username"
+                    type="text"
+                    auto-complete="on"
+                    placeholder="username"
+                />
+=======
                 <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on"
                           placeholder="username"/>
+>>>>>>> 9e926002056326cce2bd476a6c8b23e9592204b7
             </el-form-item>
             <el-form-item prop="password">
         <span class="svg-container">
@@ -20,12 +41,28 @@
                     name="password"
                     auto-complete="on"
                     placeholder="password"
+<<<<<<< HEAD
+                    @keyup.enter.native="handleLogin"
+                />
+=======
                     @keyup.enter.native="handleLogin"/>
+>>>>>>> 9e926002056326cce2bd476a6c8b23e9592204b7
                 <span class="show-pwd" @click="showPwd">
           <svg-icon icon-class="eye"/>
         </span>
             </el-form-item>
             <el-form-item>
+<<<<<<< HEAD
+                <el-button
+                    :loading="loading"
+                    type="primary"
+                    style="width:100%;"
+                    @click.native.prevent="handleLogin"
+                >
+                    Sign in
+                </el-button>
+            </el-form-item>
+=======
                 <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
                     Sign in
                 </el-button>
@@ -34,11 +71,73 @@
                 <span style="margin-right:20px;">username: admin</span>
                 <span> password: admin</span>
             </div>
+>>>>>>> 9e926002056326cce2bd476a6c8b23e9592204b7
         </el-form>
     </div>
 </template>
 
 <script>
+<<<<<<< HEAD
+import { mapActions } from 'vuex';
+
+export default {
+  name: 'Login',
+  data() {
+    return {
+      loginForm: {
+        username: 'admin',
+        password: 'admin',
+      },
+      loginRules: {
+        username: [
+          { required: true, trigger: 'blur', message: '请输入用户名' },
+        ],
+        password: [{ required: true, trigger: 'blur', message: '请输入密码' }],
+      },
+      loading: false,
+      pwdType: 'password',
+      redirect: undefined,
+    };
+  },
+  watch: {
+    $route: {
+      handler: function (route) {
+        this.redirect = route.query && route.query.redirect;
+      },
+      immediate: true,
+    },
+  },
+  methods: {
+    ...mapActions('user', ['Login']),
+    showPwd() {
+      if (this.pwdType === 'password') {
+        this.pwdType = '';
+      } else {
+        this.pwdType = 'password';
+      }
+    },
+    handleLogin() {
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          this.loading = true;
+          this.Login(this.loginForm)
+            .then(() => {
+              this.loading = false;
+              this.$router.push({ path: this.redirect || '/' });
+            })
+            .catch(() => {
+              this.$message.error('出错了');
+              this.loading = false;
+            });
+        } else {
+          this.$message.error('出错了');
+          return false;
+        }
+      });
+    },
+  },
+};
+=======
     import { mapState, mapMutations, mapActions } from 'vuex'
 
     export default {
@@ -94,6 +193,7 @@
             }
         }
     }
+>>>>>>> 9e926002056326cce2bd476a6c8b23e9592204b7
 </script>
 
 <style rel="stylesheet/scss" lang="scss">
@@ -127,7 +227,10 @@
             color: #454545;
         }
     }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 9e926002056326cce2bd476a6c8b23e9592204b7
 </style>
 
 <style rel="stylesheet/scss" lang="scss" scoped>

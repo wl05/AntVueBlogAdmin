@@ -5,11 +5,16 @@
 </template>
 
 <script>
-    import createAndUpdate from './components/createAndUpdate'
+    import createAndUpdate from './components/createAndUpdate';
 
     export default {
         components: {
-            createAndUpdate
-        }
-    }
+            createAndUpdate,
+        },
+        data() {
+            return {};
+        },
+        methods: {},
+    };
 </script>
+
