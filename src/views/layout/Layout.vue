@@ -10,35 +10,33 @@
 </template>
 
 <script>
-    import { Navbar, Sidebar, AppMain } from './components'
-    import ResizeMixin from './mixin/ResizeHandler'
-    import { mapState } from 'vuex'
+    import {Navbar, Sidebar, AppMain} from './components'
+    import {mapState} from 'vuex'
 
     export default {
-        name : 'Layout',
-        components : {
+        name: 'Layout',
+        components: {
             Navbar,
             Sidebar,
             AppMain
         },
-        mixins : [ ResizeMixin ],
-        computed : {
+        computed: {
             ...mapState('app', {
-                sidebar : state => state.sidebar,
-                device : state => state.device
+                sidebar: state => state.sidebar,
+                device: state => state.device
             }),
-            classObj () {
+            classObj() {
                 return {
-                    hideSidebar : !this.sidebar.opened,
-                    openSidebar : this.sidebar.opened,
-                    withoutAnimation : this.sidebar.withoutAnimation,
-                    mobile : this.device === 'mobile'
+                    hideSidebar: !this.sidebar.opened,
+                    openSidebar: this.sidebar.opened,
+                    withoutAnimation: this.sidebar.withoutAnimation,
+                    mobile: this.device === 'mobile'
                 }
             }
         },
-        methods : {
-            handleClickOutside () {
-                this.$store.dispatch('app/CloseSideBar', {withoutAnimation : false})
+        methods: {
+            handleClickOutside() {
+                this.$store.dispatch('app/CloseSideBar', {withoutAnimation: false})
             }
         }
     }

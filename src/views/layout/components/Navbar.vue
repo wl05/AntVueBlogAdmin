@@ -10,11 +10,11 @@
             <el-dropdown-menu slot="dropdown" class="user-dropdown">
                 <router-link class="inlineBlock" to="/">
                     <el-dropdown-item>
-                        Home
+                        首页
                     </el-dropdown-item>
                 </router-link>
                 <el-dropdown-item divided>
-                    <span style="display:block;" @click="LOGOUT">LogOut</span>
+                    <span style="display:block;" @click="LOGOUT">登出</span>
                 </el-dropdown-item>
             </el-dropdown-menu>
         </el-dropdown>
@@ -22,27 +22,27 @@
 </template>
 
 <script>
-    import { mapState, mapMutations } from 'vuex'
+    import {mapState, mapMutations} from 'vuex'
     import Breadcrumb from '@/components/Breadcrumb'
     import Hamburger from '@/components/Hamburger'
     import defaultAvatar from '@/assets/defaultAvatar.png'
 
     export default {
-        components : {
+        components: {
             Breadcrumb,
             Hamburger
         },
-        computed : {
+        computed: {
             ...mapState('user', {
-                avatar : state => state.avatar ? state.avatar : defaultAvatar,
+                avatar: state => state.avatar ? state.avatar : defaultAvatar,
             }),
             ...mapState('app', {
-                sidebar : state => state.sidebar,
+                sidebar: state => state.sidebar,
             })
 
         },
-        methods : {
-            toggleSideBar () {
+        methods: {
+            toggleSideBar() {
                 this.$store.dispatch('app/ToggleSideBar')
             },
             ...mapMutations('user', [

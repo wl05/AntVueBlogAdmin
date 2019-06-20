@@ -72,58 +72,57 @@
 <script>
 
     import Editor from './editor'
-    import { getList } from '@/api/tags'
-    import { createArticle, updateArticle, getArticleDetail, deleteArticle } from '@/api/article'
-    import { getToken } from '@/utils/auth'
-    import { getCategories } from '@/api/categories'
+    import {getList} from '@/api/tags'
+    import {createArticle, updateArticle, getArticleDetail, deleteArticle} from '@/api/article'
+    import {getCategories} from '@/api/categories'
 
     let authorization = ''
-    if (getToken()) {
-        authorization = `Bearer ${getToken()}`
+    if (localStorage.getItem('token')) {
+        authorization = `Bearer ${localStorage.getItem('token')}`
     }
     export default {
-        name : 'CreateAndUpdate',
-        data () {
+        name: 'CreateAndUpdate',
+        data() {
             return {
-                tags : [],
-                listLoading : false,
-                createLoading : false,
-                saveDraftsLoading : false,
-                uploadUrl : process.env.GATEWAY + '/img/upload',
-                uploadHeaders : {
+                tags: [],
+                listLoading: false,
+                createLoading: false,
+                saveDraftsLoading: false,
+                uploadUrl: process.env.GATEWAY + '/img/upload',
+                uploadHeaders: {
                     authorization
                 },
-                fileList : [],
-                articleContent : {
-                    title : '',
-                    content : {},
-                    selectedTagValue : '',
-                    date : '',
-                    category : ''
+                fileList: [],
+                articleContent: {
+                    title: '',
+                    content: {},
+                    selectedTagValue: '',
+                    date: '',
+                    category: ''
                 },
-                STATIC_DOMAIN : process.env.STATIC_DOMAIN,
-                rules : {
-                    title : [
-                        {type : 'string', required : true, message : '请输入标题', trigger : 'blur'}
+                STATIC_DOMAIN: process.env.STATIC_DOMAIN,
+                rules: {
+                    title: [
+                        {type: 'string', required: true, message: '请输入标题', trigger: 'blur'}
                     ],
-                    selectedTagValue : [
-                        {type : 'string', required : true, message : '请选择标签', trigger : 'blur'}
+                    selectedTagValue: [
+                        {type: 'string', required: true, message: '请选择标签', trigger: 'blur'}
                     ],
-                    date : [
-                        {type : 'date', required : true, message : '请选择日期', trigger : 'blur'}
+                    date: [
+                        {type: 'date', required: true, message: '请选择日期', trigger: 'blur'}
                     ],
-                    category : [
-                        {type : 'string', required : true, message : '请选择标签', trigger : 'blur'}
+                    category: [
+                        {type: 'string', required: true, message: '请选择标签', trigger: 'blur'}
                     ],
                 },
-                getArticleDetailLoading : false,
-                deleteArticleLoading : false,
-                categories : [],
-                getCategoriesLoading : false,
+                getArticleDetailLoading: false,
+                deleteArticleLoading: false,
+                categories: [],
+                getCategoriesLoading: false,
             }
         },
-        computed : {
-            markdownValue : function () {
+        computed: {
+            markdownValue: function () {
                 if (this.articleContent.content) {
                     return this.articleContent.content.markdownValue
                 } else {
@@ -131,18 +130,18 @@
                 }
             }
         },
-        mounted () {
+        mounted() {
             if (this.$route.query.id) {
                 this.getArticleDetail(this.$route.query.id)
             }
             this.getList()
             this.getCategories()
         },
-        methods : {
-            onEditorChange (val) {
+        methods: {
+            onEditorChange(val) {
                 this.articleContent.content = val
             },
-            async getCategories () {
+            async getCategories() {
                 this.getCategoriesLoading = true
                 try {
                     const result = await getCategories()
@@ -158,7 +157,7 @@
                     this.$message.error('出错了')
                 }
             },
-            async getArticleDetail (id) {
+            async getArticleDetail(id) {
                 this.getArticleDetailLoading = true
                 try {
                     const result = await getArticleDetail(id)
@@ -177,13 +176,13 @@
                         } = {...result.data.data}
                         this.articleContent = {
                             title,
-                            date : new Date(publishAt),
-                            content : {
+                            date: new Date(publishAt),
+                            content: {
                                 markdownValue,
                                 htmlValue
                             },
-                            selectedTagValue : tag._id,
-                            category : category._id
+                            selectedTagValue: tag._id,
+                            category: category._id
                         }
                     }
                 } catch (e) {
@@ -192,7 +191,7 @@
                 }
 
             },
-            async getList () {
+            async getList() {
                 this.listLoading = true
                 try {
                     const result = await getList()
@@ -207,12 +206,12 @@
                     this.$message.error('出错了')
                 }
             },
-            deleteArticle (id) {
+            deleteArticle(id) {
                 this.$confirm('确定删除吗', {
-                    confirmButtonText : '确定',
-                    cancelButtonText : '取消',
-                    type : 'warning',
-                    callback : async (action, instance) => {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning',
+                    callback: async (action, instance) => {
                         if (action === "confirm") {
                             this.deleteArticleLoading = true
                             try {
@@ -222,7 +221,7 @@
                                     this.$message.error('删除失败')
                                 } else {
                                     this.$message.success('删除成功')
-                                    this.$router.push({path : "/article/list"})
+                                    this.$router.push({path: "/article/list"})
                                 }
                             } catch (e) {
                                 console.log(e)
@@ -233,7 +232,7 @@
                     }
                 })
             },
-            async publish () {
+            async publish() {
                 const {
                     title,
                     content,
@@ -252,22 +251,22 @@
                                 res = await updateArticle(this.$route.query.id,
                                     {
                                         title,
-                                        tag : selectedTagValue,
-                                        markdownValue : content.markdownValue ? content.markdownValue : '',
-                                        htmlValue : content.htmlValue ? content.htmlValue : '',
-                                        publishAt : Date.parse(date),
-                                        publishStatus : '2',
+                                        tag: selectedTagValue,
+                                        markdownValue: content.markdownValue ? content.markdownValue : '',
+                                        htmlValue: content.htmlValue ? content.htmlValue : '',
+                                        publishAt: Date.parse(date),
+                                        publishStatus: '2',
                                         category
                                     }
                                 )
                             } else {
                                 res = await createArticle({
                                     title,
-                                    tag : selectedTagValue,
-                                    markdownValue : content.markdownValue ? content.markdownValue : '',
-                                    htmlValue : content.htmlValue ? content.htmlValue : '',
-                                    publishAt : Date.parse(date),
-                                    publishStatus : '2',
+                                    tag: selectedTagValue,
+                                    markdownValue: content.markdownValue ? content.markdownValue : '',
+                                    htmlValue: content.htmlValue ? content.htmlValue : '',
+                                    publishAt: Date.parse(date),
+                                    publishStatus: '2',
                                     category
                                 })
                             }
@@ -288,7 +287,7 @@
                 });
             },
 
-            async saveDrafts () {
+            async saveDrafts() {
                 const {
                     title,
                     content,
@@ -306,22 +305,22 @@
                                 res = await updateArticle(this.$route.query.id,
                                     {
                                         title,
-                                        tag : selectedTagValue,
-                                        markdownValue : content.markdownValue ? content.markdownValue : '',
-                                        htmlValue : content.htmlValue ? content.htmlValue : '',
-                                        publishAt : Date.parse(date),
-                                        publishStatus : '1',
+                                        tag: selectedTagValue,
+                                        markdownValue: content.markdownValue ? content.markdownValue : '',
+                                        htmlValue: content.htmlValue ? content.htmlValue : '',
+                                        publishAt: Date.parse(date),
+                                        publishStatus: '1',
                                         category
                                     }
                                 )
                             } else {
                                 res = await createArticle({
                                     title,
-                                    tag : selectedTagValue,
-                                    markdownValue : content.markdownValue ? content.markdownValue : '',
-                                    htmlValue : content.htmlValue ? content.htmlValue : '',
-                                    publishAt : Date.parse(date),
-                                    publishStatus : '1',
+                                    tag: selectedTagValue,
+                                    markdownValue: content.markdownValue ? content.markdownValue : '',
+                                    htmlValue: content.htmlValue ? content.htmlValue : '',
+                                    publishAt: Date.parse(date),
+                                    publishStatus: '1',
                                     category
 
                                 })
@@ -343,7 +342,7 @@
                 });
             },
 
-            upLoadSuccess (response, file, fileList) {
+            upLoadSuccess(response, file, fileList) {
                 console.log(response)
                 if (response.code) {
                     this.$message.error('上传失败')
@@ -356,12 +355,12 @@
                     }))
                 }
             },
-            upLoadError (response, file, fileList) {
+            upLoadError(response, file, fileList) {
                 this.$message.error('上传失败')
             }
         }
         ,
-        components : {
+        components: {
             Editor
         }
     }

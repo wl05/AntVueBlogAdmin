@@ -2,13 +2,17 @@
     <div class="login-container">
         <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" auto-complete="on"
                  label-position="left">
-            <h3 class="title">Ant Vue Blog Admin</h3>
-            <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user"/>
-        </span>
-                <el-input v-model="loginForm.username" name="username" type="text" auto-complete="on"
-                          placeholder="username"/>
+            <h3 class="title">Ant Blog Admin</h3>
+            <el-form-item prop="name">
+                <span class="svg-container">
+                  <svg-icon icon-class="user"/>
+                </span>
+                <el-input
+                    v-model="loginForm.email"
+                    type="email"
+                    auto-complete="on"
+                    placeholder="邮箱"
+                />
             </el-form-item>
             <el-form-item prop="password">
         <span class="svg-container">
@@ -17,77 +21,80 @@
                 <el-input
                     :type="pwdType"
                     v-model="loginForm.password"
-                    name="password"
                     auto-complete="on"
-                    placeholder="password"
-                    @keyup.enter.native="handleLogin"/>
-                <span class="show-pwd" @click="showPwd">
-          <svg-icon icon-class="eye"/>
-        </span>
+                    placeholder="密码"
+                    @keyup.enter.native="handleLogin"
+                />
+                <span
+                    class="show-pwd"
+                    @click="showPwd"
+                >
+                    <svg-icon icon-class="eye"/>
+                </span>
             </el-form-item>
             <el-form-item>
                 <el-button :loading="loading" type="primary" style="width:100%;" @click.native.prevent="handleLogin">
-                    Sign in
+                    登录
                 </el-button>
             </el-form-item>
-            <div class="tips">
-                <span style="margin-right:20px;">username: admin</span>
-                <span> password: admin</span>
-            </div>
         </el-form>
     </div>
 </template>
 
 <script>
-    import { mapState, mapMutations, mapActions } from 'vuex'
+    import {mapActions} from 'vuex'
 
     export default {
-        name : 'Login',
-        data () {
+        name: 'Login',
+        data() {
             return {
-                loginForm : {
-                    username : 'admin',
-                    password : 'admin'
+                loginForm: {
+                    email: 'admin',
+                    password: 'admin'
                 },
-                loginRules : {
-                    username : [ {required : true, trigger : 'blur', message : '请输入用户名'} ],
-                    password : [ {required : true, trigger : 'blur', message : '请输入密码'} ]
+                loginRules: {
+                    email: [{required: true, trigger: 'blur', message: '请输入用户名'}],
+                    password: [{required: true, trigger: 'blur', message: '请输入密码'}]
                 },
-                loading : false,
-                pwdType : 'password',
-                redirect : undefined
+                loading: false,
+                pwdType: 'password',
+                redirect: undefined
             }
         },
-        watch : {
-            $route : {
-                handler : function (route) {
+        watch: {
+            $route: {
+                handler: function (route) {
                     this.redirect = route.query && route.query.redirect
                 },
-                immediate : true
+                immediate: true
             }
         },
-        methods : {
-            ...mapActions('user', [ 'Login' ]),
-            showPwd () {
+        methods: {
+            ...mapActions('user', ['Login']),
+            showPwd() {
                 if (this.pwdType === 'password') {
                     this.pwdType = ''
                 } else {
                     this.pwdType = 'password'
                 }
             },
-            handleLogin () {
-                this.$refs.loginForm.validate(valid => {
+            handleLogin() {
+                this.$refs.loginForm.validate(async valid => {
                     if (valid) {
                         this.loading = true
-                        this.Login(this.loginForm).then(() => {
+                        try {
+                            const res = await this.Login(this.loginForm)
+                            if (res.data.code === 0) {
+                                this.$router.push({path: this.redirect || '/'})
+                            } else {
+                                this.$message.error(res.data.message)
+                            }
                             this.loading = false
-                            this.$router.push({path : this.redirect || '/'})
-                        }).catch(() => {
-                            this.$message.error('出错了')
+                        } catch (e) {
                             this.loading = false
-                        })
+                        }
+
                     } else {
-                        this.$message.error('出错了')
                         return false
                     }
                 })
@@ -99,8 +106,6 @@
 <style rel="stylesheet/scss" lang="scss">
     $bg: #2d3a4b;
     $light_gray: #eee;
-
-    /* reset element-ui css */
     .login-container {
         .el-input {
             display: inline-block;

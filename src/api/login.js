@@ -1,16 +1,16 @@
 import _request from '@/utils/request'
 
-export function login(name, password) {
-  return _request.post('/login', { name, password })
+export function login(email, password) {
+    return _request.post('/login', {email, password})
 }
 
 export function getInfo() {
-  return _request.get('/user')
+    return _request.get('/user')
 }
 
 export function logout() {
-  return request({
-    url: '/user/logout',
-    method: 'post',
-  })
+    return request({
+        url: '/user/logout',
+        method: 'post',
+    })
 }
