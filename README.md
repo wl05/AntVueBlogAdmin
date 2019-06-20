@@ -36,17 +36,14 @@ npm i
 ```
 运行
 
-1. 安装redis并启动
-关于redis的安装与运行可以参考[这里](https://github.com/antbaobao/AntBlog/issues/42)
-2. 安装mongodb并启动
-3. 运行
-    ```bash
-    npm run dev
-    ```
+```bash
+npm run dev
+```
 部署
-    ```bash
-    sh DokcerBash.sh
-    ```
+
+```bash
+sh DokcerBash.sh
+```
 ### 效果展示
 
 ![](https://user-gold-cdn.xitu.io/2018/12/8/1678d0285a4304cf?w=2878&h=1628&f=png&s=470479)
