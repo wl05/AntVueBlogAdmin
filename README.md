@@ -41,9 +41,8 @@ npm run dev
 ```
 部署
 
-```bash
-sh DokcerBash.sh
-```
+部署流程可以参考[使用docker部署网站](https://github.com/antbaobao/AntBlog/issues/20)
+
 ### 效果展示
 
 ![](https://user-gold-cdn.xitu.io/2018/12/8/1678d0285a4304cf?w=2878&h=1628&f=png&s=470479)
