@@ -99,13 +99,10 @@ export default {
     handleSizeChange(val) {
       this.pageLimit = val
       this.fetchArticle(this.pageSize, val)
-      console.log(`每页 ${val} 条`)
     },
     handleCurrentChange(val) {
       this.pageSize = val
       this.fetchArticle(val, this.pageLimit)
-
-      console.log(`当前页: ${val}`)
     },
     async fetchArticle(pageSize, pageLimit) {
       this.fetchArticleLoading = true
@@ -136,7 +133,6 @@ export default {
                 this.fetchArticle(this.pageSize, this.pageLimit)
               }
             } catch (e) {
-              console.log(e)
               this.deleteArticleLoading = false
               this.$message.error('出错了')
             }

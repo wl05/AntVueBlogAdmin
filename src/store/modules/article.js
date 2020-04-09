@@ -18,7 +18,6 @@ const article = {
   actions: {
     // 获取用户信息
     FetchArticle({ commit, state }, condition) {
-      console.log(condition)
       return new Promise((resolve, reject) => {
         fetchArticle(condition)
           .then(response => {

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 /* Layout */
-import Layout from '../views/layout/Layout'
+import Layout from '@/views/layout/Layout'
 
 // in development-env not use lazy-loading, because lazy-loading too many pages will cause webpack hot update too slow. so only in production use lazy-loading;
 // detail: https://panjiachen.github.io/vue-element-admin-site/#/lazy-loading
@@ -55,7 +55,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'create',
-        name: 'Create',
+        name: 'ArticleCreate',
         component: () => import('@/views/article/create'),
         meta: { title: '发布文章', icon: 'edit' }
       },
@@ -74,7 +74,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'create',
-        name: 'Tags',
+        name: 'TagsCreate',
         component: () => import('@/views/tags/tags'),
         meta: { title: '标签', icon: 'table' }
       }
@@ -87,7 +87,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'create',
-        name: 'Create',
+        name: 'CategoriesCreate',
         component: () => import('@/views/categories/categories'),
         meta: { title: '分类', icon: 'star' }
       }
@@ -100,7 +100,7 @@ export const constantRouterMap = [
     children: [
       {
         path: 'create',
-        name: 'Create',
+        name: 'UserCreate',
         component: () => import('@/views/user/list'),
         meta: { title: '用户管理', icon: 'user' }
       }

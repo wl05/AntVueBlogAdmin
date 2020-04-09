@@ -173,7 +173,6 @@ export default {
         if (result.data.code) {
           this.$message.error('获取分类失败')
         } else {
-          console.log(result.data.data)
           this.categories = result.data.data
         }
       } catch (e) {
@@ -189,7 +188,6 @@ export default {
         if (result.data.code) {
           this.$message.error('出错了')
         } else {
-          console.log(result.data.data)
           const {
             title,
             publishAt,
@@ -247,7 +245,6 @@ export default {
                 this.$router.push({ path: '/article/list' })
               }
             } catch (e) {
-              console.log(e)
               this.deleteArticleLoading = false
               this.$message.error('出错了')
             }
@@ -302,7 +299,6 @@ export default {
               this.$message.success('发布成功')
             }
           } catch (e) {
-            console.log(e)
             this.createLoading = false
             this.$message.error('发布失败')
           }
@@ -369,7 +365,6 @@ export default {
     },
 
     upLoadSuccess(response, file, fileList) {
-      console.log(response)
       if (response.code) {
         this.$message.error('上传失败')
       } else {
