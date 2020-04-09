@@ -1,17 +1,17 @@
-import _request from '@/utils/request'
+import request from '@/utils/request'
 
 export function create(name) {
-  return _request.post('/categories', { name })
+  return request.post('/categories', { name })
 }
 
 export function getCategories() {
-  return _request.get('/categories')
+  return request.get('/categories')
 }
 
 export function deleteCategory(id) {
-  return _request.delete(`/categories/${id}`)
+  return request.delete(`/categories/${id}`)
 }
 
 export function update(id, name) {
-  return _request.put(`/categories/${id}`, { name })
+  return request.put(`/categories/${id}`, { name })
 }

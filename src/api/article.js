@@ -1,21 +1,21 @@
-import _request from '@/utils/request'
+import request from '@/utils/request'
 
 export function fetchArticle(params) {
-  return _request.get('/articles', params)
+  return request.get('/articles', params)
 }
 
 export function getArticleDetail(id) {
-  return _request.get(`/articles/${id}`)
+  return request.get(`/articles/${id}`)
 }
 
 export function createArticle(data) {
-  return _request.post('/articles', data)
+  return request.post('/articles', data)
 }
 
 export function updateArticle(id, data) {
-  return _request.put(`/articles/${id}`, data)
+  return request.put(`/articles/${id}`, data)
 }
 
 export function deleteArticle(id) {
-  return _request.delete(`/articles/${id}`)
+  return request.delete(`/articles/${id}`)
 }

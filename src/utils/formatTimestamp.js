@@ -1,15 +1,14 @@
 const add0 = (m) => {
-    return m < 10 ? '0' + m : m
+  return m < 10 ? '0' + m : m
 }
 const format = (timestamps) => {
-    
-    var time = new Date(parseInt(timestamps) * 1000);
-    var y = time.getFullYear();
-    var m = time.getMonth() + 1;
-    var d = time.getDate();
-    var h = time.getHours();
-    var mm = time.getMinutes();
-    var s = time.getSeconds();
-    return y + '/' + add0(m) + '/' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s);
+  let time = new Date(parseInt(timestamps) * 1000)
+  let y = time.getFullYear()
+  let m = time.getMonth() + 1
+  let d = time.getDate()
+  let h = time.getHours()
+  let mm = time.getMinutes()
+  let s = time.getSeconds()
+  return y + '/' + add0(m) + '/' + add0(d) + ' ' + add0(h) + ':' + add0(mm) + ':' + add0(s)
 }
 export default format

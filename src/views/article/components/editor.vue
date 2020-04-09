@@ -8,26 +8,23 @@
 </template>
 
 <script>
-    import MarkDown from 'vue-meditor'
+import MarkDown from 'vue-meditor'
 
-    export default {
-        props : {
-            initialValue : {
-                type : String,
-                default : ''
-            }
-        },
-        name : 'Editorbar',
-        components : {
-            MarkDown
-        },
-        methods : {
-            save : function (val) {
-                this.$emit("onEditorChange", val)
-            }
-        }
+export default {
+  props: {
+    initialValue: {
+      type: String,
+      default: ''
     }
+  },
+  name: 'Editorbar',
+  components: {
+    MarkDown
+  },
+  methods: {
+    save: function(val) {
+      this.$emit('onEditorChange', val)
+    }
+  }
+}
 </script>
-
-<style>
-</style>

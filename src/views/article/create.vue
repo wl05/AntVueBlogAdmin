@@ -3,13 +3,11 @@
         <createAndUpdate/>
     </div>
 </template>
-
 <script>
-    import createAndUpdate from './components/createAndUpdate'
-
-    export default {
-        components: {
-            createAndUpdate
-        }
-    }
+import createAndUpdate from './components/createAndUpdate'
+export default {
+  components: {
+    createAndUpdate
+  }
+}
 </script>

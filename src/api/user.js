@@ -1,9 +1,9 @@
-import _request from '@/utils/request'
+import request from '@/utils/request'
 
 export function update(id, name, password) {
-  return _request.put(`/user`, { name, password, id })
+  return request.put(`/user`, { name, password, id })
 }
 
 export function getUserList() {
-  return _request.get(`/users`)
+  return request.get(`/users`)
 }

@@ -4,7 +4,7 @@ const article = {
   namespaced: true,
   state: {
     articleList: null,
-    count: 0,
+    count: 0
   },
 
   mutations: {
@@ -13,7 +13,7 @@ const article = {
     },
     SET_COUNT: (state, count) => {
       state.count = count
-    },
+    }
   },
   actions: {
     // 获取用户信息
@@ -35,8 +35,8 @@ const article = {
             reject(error)
           })
       })
-    },
-  },
+    }
+  }
 }
 
 export default article

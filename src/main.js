@@ -19,9 +19,10 @@ Vue.use(ElementUI, { locale })
 
 Vue.config.productionTip = false
 
+// eslint-disable-next-line no-new
 new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App),
+  render: h => h(App)
 })

@@ -8,7 +8,7 @@
 
 <script>
 // import { markdown } from 'markdown'
-import VueMarkdown from 'vue-markdown'
+// import VueMarkdown from 'vue-markdown'
 
 import './style.css'
 import 'github-markdown-css'
@@ -18,11 +18,11 @@ export default {
   props: {
     content: {
       type: Object,
-      default: () => {},
-    },
+      default: () => {}
+    }
   },
   components: {
-    VueMarkdown,
+    // VueMarkdown
   },
 
   created() {
@@ -30,7 +30,7 @@ export default {
     this.$nextTick(function() {
       this.$refs.content.innerHTML = this.content.htmlValue
     })
-  },
+  }
   // computed : {
   //     fomatedContent () {
   //         this.$nextTick(function () {
